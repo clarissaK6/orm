@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Database Admin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #007bff;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    form {
+      margin-bottom: 40px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select {
+      padding: 10px;
+      width: calc(100% - 22px);
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Student Database Admin Panel</h1>
+
+<form id="studentForm">
+  <input type="text" id="firstName" placeholder="First Name" required>
+  <input type="text" id="lastName" placeholder="Last Name" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="date" id="dob" required>
+  <input type="text" id="field" placeholder="Field of Study" required>
+  <input type="number" id="gpa" placeholder="GPA (e.g., 3.75)" step="0.01" required>
+  <input type="number" id="studentId" placeholder="Student ID" required>
+  <button type="submit">Add Student</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>DOB</th>
+      <th>Field of Study</th>
+      <th>GPA</th>
+    </tr>
+  </thead>
+  <tbody id="studentTable">
+    <!-- Data will be inserted here -->
+  </tbody>
+</table>
+
+<script>
+  const form = document.getElementById("studentForm");
+  const table = document.getElementById("studentTable");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${document.getElementById("studentId").value}</td>
+      <td>${document.getElementById("firstName").value}</td>
+      <td>${document.getElementById("lastName").value}</td>
+      <td>${document.getElementById("email").value}</td>
+      <td>${document.getElementById("dob").value}</td>
+      <td>${document.getElementById("field").value}</td>
+      <td>${document.getElementById("gpa").value}</td>
+    `;
+
+    table.appendChild(row);
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
